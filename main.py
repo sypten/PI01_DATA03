@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from ETL import años_carreras, top_años_carreras, nombre_circuito, top_nombre_circuito, pilotos_puntos
+from ETL import años_carreras, primer_puesto, top_años_carreras, nombre_circuito, top_nombre_circuito, pilotos_puntos
 
 app= FastAPI(title='Consultas de Corredores',
             description='La API devuelve cuatro tipo de resultados principales /años, /circuitos, /pilotos, /puntos. A todos se les puede agregar /top{numero} para realizar un top de los valores',
@@ -24,3 +24,7 @@ async def circuito_top(numero):
 @app.get("/pilotos")
 async def pilotos():
     return pilotos_puntos()
+
+@app.get("/primeros")
+async def primeros():
+    return primer_puesto()

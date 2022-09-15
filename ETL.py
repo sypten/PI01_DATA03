@@ -31,7 +31,7 @@ def nombre_circuito():
     cant_carreras=carreras["name_y"].value_counts().sort_values(ascending=False)    
     return [{"Nombre circuito":k,"Cantidad de carreras":v} for k,v in cant_carreras.to_dict().items()]
 
-def top_nombre_circuito(numero:int=3):
+def top_nombre_circuito(numero : int = 3):
     numero=int(numero)
     return nombre_circuito()[:numero]
 
@@ -43,3 +43,24 @@ def pilotos_puntos():
     resultado=resname_bri_ame[["driverId","nombre","points"]].groupby(["driverId","nombre"]).sum("points").sort_values("points",ascending=False)
     resultado.reset_index(inplace=True)
     return resultado.to_dict(orient="records")
+
+def top_pilotos_puntos(numero : int  = 3):
+    numero=int(numero)
+    return pilotos_puntos()[:numero]
+
+def primer_puesto():
+    dt=d_results[["driverId","positionOrder"]].groupby("driverId").value_counts()
+    dt=pd.DataFrame(dt)
+    dt.rename(columns={0:"Veces"},inplace=True)
+    dt.reset_index(inplace=True)
+    dt.rename(columns={"positionOrder":"Puesto"},inplace=True)
+    dt=dt[dt.Puesto==1]
+    pilotos=dt.merge(d_drivers[["driverId","name_forename","name_surname"]],how="left", on="driverId")
+    pilotos.insert(1,"Nombre",(pilotos.name_forename+" "+pilotos.name_surname))
+    pilotos.drop(columns=["name_forename","name_surname"],inplace=True)
+    pilotos.sort_values("Veces",ascending=False,inplace=True)
+    return pilotos.to_dict(orient="records")
+
+def top_primer_puesto(numero):
+    numero=int(numero)
+    return primer_puesto()[:numero]
