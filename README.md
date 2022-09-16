@@ -36,13 +36,13 @@ Las respuestas de las consultas al **API** devuelven **JSON** y tienen la siguie
 
 ## Consultas Disponibles
 
-`/años`: Listado de todos los años de los que se tiene registro, con la cantidad de carreras por año
-`/años/top{numero}`: Listado ordenado con mayor cantidad de carreras por año, en un top según el número indicado.
-`/primerpuesto`: Pilotos y la cantidad de veces que consiguieron un primer puesto. Ordenado por cantidad de forma descendente
-`/primerpuesto/top{numero}`: Top de pilotos y la cantidad de veces que consiguieron un primer puesto.
-`/circuitos`: Nombre de circuitos con cantidad de carreras que se corrieron en él. Ordenado de más carreras a menos.
-`/circuitos/top{numero}`: Top según la cantidad indicada de los nombres de circuitos y carreras.
-`/puntos`: Pilotos con carrocería de origen Americano o Británico y la cantidad de puntos acumulados. Ordenados por puntos de forma descendente.
+`/años`: Listado de todos los años de los que se tiene registro, con la cantidad de carreras por año.\n
+`/años/top{numero}`: Listado ordenado con mayor cantidad de carreras por año, en un top según el número indicado.\n
+`/primerpuesto`: Pilotos y la cantidad de veces que consiguieron un primer puesto. Ordenado por cantidad de forma descendente.\n
+`/primerpuesto/top{numero}`: Top de pilotos y la cantidad de veces que consiguieron un primer puesto.\n
+`/circuitos`: Nombre de circuitos con cantidad de carreras que se corrieron en él. Ordenado de más carreras a menos.\n
+`/circuitos/top{numero}`: Top según la cantidad indicada de los nombres de circuitos y carreras.\n
+`/puntos`: Pilotos con carrocería de origen Americano o Británico y la cantidad de puntos acumulados. Ordenados por puntos de forma descendente.\n
 `/puntos/top{numero}`: Top según el numero indicado de pilotos y puntos acumulados con carrocería Americana o Británica.
 
 
