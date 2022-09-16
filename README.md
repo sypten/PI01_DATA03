@@ -1,56 +1,48 @@
-# Proyecto Individual 1- Data 03- Soy Henry   
+# Proyecto Individual 1- Data 03- Soy Henry
+
 ## Creación de una API
+
 ![image](https://user-images.githubusercontent.com/108296379/182138583-9011699a-f009-4454-885e-80dca182b6c8.png)
 
-## Consigna
-Para este proyecto individual, deberán absorver los conocimientos necesarios para la creación y correcta ejecución de una API. Bajo esta norma, recibirán un conjunto de datasets en diferentes formatos los cuáles deberán ser normalizados y analizados para garantizar su calidad. (Ver Plus)
+## Introducción
+La API brinda la información solicitada para el proyecto en formato json, para ser ingestada en cualquier otro aplicativo que así lo requiera. 
 
-La consigna, propone la utilización de el framework FastAPI para el desarrollo, lo cuál deberá respetarse. Para esto, sugerimos leer la documentación del sitio oficial, el cuál se caracteriza por su legibilidad y entendimiento para la correcta explotación de la herramienta.
+Los datos se cargan a partir de los ficheros provistos y al no existir necesidad de persistir ningún dato, se trabajaron las consultas y las respuestas enteramente desde python.
 
-Una vez normalizado el dataset y entendiendo la problemática final, deberán de crear una serie de consultas que la API debe solucionar. Estas son:  
-- Año con más carreras
-- Piloto con mayor cantidad de primeros puestos
-- Nombre del circuito más corrido
-- Piloto con mayor cantidad de puntos en total, cuyo constructor sea de nacionalidad sea American o British
+Por supesto no se descarga la posibilidad de incluir en el futuro una conección a una base de datos, a modo de persistir los datos.
 
-  
-## Pasos a seguir
-1. Normalización y creado de relaciones del conjunto de datos.
-2. Investigar sobre la creación de API's con el framework FastAPI.
-3. Desarrollo de las consultas derivadas.
-4. Crear y subir video.
+## Funcionamiento
+Para ello se debe descargar el repositorio e instalar los requirements que se encuentran listados. Luego poner en funcionamiento uvicorn con el comando
 
-## Plus:
-- Documentación del contenido de la API.
-- Documentación de procedimiento de uso de la API.
-- Creación de relaciones con SQL.
-- Hacer un deploy en Heroku (o con alguna herramienta similar).
+```bash
+uvicorn main:app
+```
 
-## Tips:
-- Prestar atención a la calidad del dato.
-- Leer la documentación oficial de FastAPI.
-- Comparar con diferentes consultas los resultados obtenidos y los deseados.
-- Si vas a usar Heroku, procura implementarlo desde el inicio del armado de tu script.
-- SUPERTIP: Es el mejor momento para que comiencen a trabajar/familiarizarse con el uso de Github en sus proyectos!
+De esta forma ya se podrá realizar las consultas de forma local.
 
-### Repasemos conceptos. ¿Que es una API?  
-Se llama Application Programming interface o, por su traducción, Interfaz de Programación de Aplicaciones al conjunto de subrutinas, funciones y procedimientos que ofrece cierta biblioteca para ser utilizada por otro software como una capa de abstracción.  
-  
-Vamos a traducir el párrafo anterior en una imágen:  
-<img src = "https://images-cdn.9gag.com/photo/aBnQb8z_700b.jpg" height = 300>
+## Respuestas
 
-### ¿Que función cumple FastAPI?  
-FastAPI es un web framework moderno y rápido (de alto rendimiento) para construir APIs con Python 3.6+ basado en las anotaciones de tipos estándar de Python.  
-Posee Guías explicativas detalladas paso por paso, donde podrán sacarse todas las dudas que vayan surgiendo con respecto al uso de esta.  
-  
-  
-# Muy Importante -> VIDEO DEMO
-El video no deberá contar con más de 5 minutos, donde deberán mostrar la carga de los datos dentro de la api y las consultas que se les pidieron anteriormente.  
-Se deberá subir el video a YouTube y en configuración de privacidad brindar acceso a quien posee el link. Asegurarse que el código grabado sea legible en todo momento. Para esto pueden utilizar Loom, Zoom u otra capturadora que posea entrada de audio para la entrada de su explicación.  
+Las respuestas de las consultas al **API** devuelven **JSON** y tienen la siguiente estructura:
 
-La descripción del mismo debera ser: NOMBRE Y APELLIDO ESTUDIANTE - DSH - FastAPI.  
-Ejemplo -> Fulanitode Tal - DSH - FastAPI  
+```json
+[
+	{
+	"Descripción dato 1": valor
+	"Descripción dato 2": valor
+	...
+	}
+]
+```
 
-### ¡Mucha Suerte!  
+## Consultas Disponibles
 
-<img src = "https://user-images.githubusercontent.com/96025598/188937586-28575753-fbd6-42de-beca-81ae35b659e0.gif" height = 300>
+`/años`: Listado de todos los años de los que se tiene registro, con la cantidad de carreras por año
+`/años/top{numero}`: Listado ordenado con mayor cantidad de carreras por año, en un top según el número indicado.
+`/primerpuesto`: Pilotos y la cantidad de veces que consiguieron un primer puesto. Ordenado por cantidad de forma descendente
+`/primerpuesto/top{numero}`: Top de pilotos y la cantidad de veces que consiguieron un primer puesto.
+`/circuitos`: Nombre de circuitos con cantidad de carreras que se corrieron en él. Ordenado de más carreras a menos.
+`/circuitos/top{numero}`: Top según la cantidad indicada de los nombres de circuitos y carreras.
+`/puntos`: Pilotos con carrocería de origen Americano o Británico y la cantidad de puntos acumulados. Ordenados por puntos de forma descendente.
+`/puntos/top{numero}`: Top según el numero indicado de pilotos y puntos acumulados con carrocería Americana o Británica.
+
+
